@@ -1,0 +1,14 @@
+# hello-world/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hello-world.fullname" . }}
+  labels:
+    {{- include "hello-world.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    {{- include "hello-world.selectorLabels" . | nindent 4 }}
